@@ -227,7 +227,7 @@ class ReactCodeInput extends Component {
   }
 
   render() {
-    const { className, style = {}, inputStyle = {}, inputStyleInvalid = {}, type, autoFocus, pattern, inputMode } = this.props,
+    const { className, style = {}, inputStyle = {}, inputStyleInvalid = {}, type, autoFocus, pattern, inputMode, highlightCharIndex } = this.props,
       { disabled, input, isValid, defaultInputStyle } = this.state,
       styles = {
         container: style,
@@ -279,6 +279,7 @@ class ReactCodeInput extends Component {
               value={value}
               key={`input_${i}`}
               type={type}
+              className={(i === highlightCharIndex) ? 'highlight' : ''}
               min={0}
               max={9}
               maxLength={input.length === i + 1 ? 1 : input.length}
@@ -311,6 +312,7 @@ ReactCodeInput.defaultProps = {
   type: 'text',
   filterKeyCodes: [189, 190],
   filterChars: ['-', '.'],
+  highlightCharIndex: false,
 };
 
 ReactCodeInput.propTypes = {
@@ -340,7 +342,8 @@ ReactCodeInput.propTypes = {
   onKeyDown: PropTypes.func,
   onKeyPress: PropTypes.func,
   onKeyUp: PropTypes.func,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  highlightCharIndex: PropTypes.number,
 };
 
 export default ReactCodeInput;

@@ -63,12 +63,35 @@ class ReactCodeInput extends Component {
     this.uuid = uuidv4();
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    this.setState({
-      isValid: nextProps.isValid,
-      value: nextProps.value,
-      disabled: nextProps.disabled,
-    });
+  // UNSAFE_componentWillReceiveProps(nextProps) {
+  //   this.setState({
+  //     isValid: nextProps.isValid,
+  //     value: nextProps.value,
+  //     disabled: nextProps.disabled,
+  //   });
+  // }
+
+  componentDidUpdate(prevProps){
+    if (this.props.fields !== prevProps.fields) {
+      this.setState({
+        fields: this.props.fields
+      })
+    }
+    if (this.props.isValid !== prevProps.isValid) {
+      this.setState({
+        isValid: this.props.isValid
+      })
+    }
+    if (this.props.value !== prevProps.value) {
+      this.setState({
+        value: this.props.value
+      })
+    }
+    if (this.props.disabled !== prevProps.disabled) {
+      this.setState({
+        disabled: this.props.disabled
+      })
+    }
   }
 
   handleBlur(e) {

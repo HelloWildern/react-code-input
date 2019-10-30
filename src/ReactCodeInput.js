@@ -298,7 +298,7 @@ class ReactCodeInput extends Component {
 
     return (
       <div className={classNames(className, 'react-code-input')} style={styles.container} onKeyDown={this.props.onKeyDown} onKeyPress={this.props.onKeyPress} onKeyUp={this.props.onKeyUp} >
-        {/* {input.map((value, i) => {
+        {input.map((value, i) => {
           return (
             <input
               ref={(ref) => {
@@ -327,7 +327,7 @@ class ReactCodeInput extends Component {
               placeholder={this.props.placeholder}
             />
           );
-        })} */}
+        })}
       </div>
     );
   }

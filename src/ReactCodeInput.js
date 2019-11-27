@@ -21,14 +21,15 @@ class ReactCodeInput extends Component {
     super(props);
 
     const { fields, type, isValid, disabled, filterKeyCodes, forceUppercase } = props;
-    let { value } = props;
+    let { value, initialValue } = props;
 
     if (forceUppercase) {
       value = value.toUpperCase();
+      initialValue = initialValue.toUpperCase()
     }
 
     this.state = {
-      value,
+      value: initialValue,
       fields,
       type,
       input: [],

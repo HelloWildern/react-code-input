@@ -187,9 +187,16 @@ class ReactCodeInput extends Component {
         newTarget.select();
       }
 
-      fullValue = input.join(' ');
+      //fullValue = input.join('');
+      fullValue = input.map((s, i) => {
+        if (s) {
+          return s
+        } else {
+          return " "
+        }
+      }).join('')
 
-      this.setState({ value: input.join(' '), input });
+      this.setState({ value: fullValue, input });
     }
 
     if (this.props.onChange && fullValue) {

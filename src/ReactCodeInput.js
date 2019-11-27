@@ -78,23 +78,6 @@ class ReactCodeInput extends Component {
         isValid: this.props.isValid
       })
     }
-    if (this.props.initialValue !== prevProps.initialValue) {
-      let value = this.props.initialValue
-      let new_input = []
-      if(this.props.forceUppercase){
-        value = value.toUpperCase()
-      }
-      for (let i = 0; i < Number(this.props.fields); i += 1) {
-        if (i < 32) {
-          const val = value[i] || '';
-          new_input.push(val);
-        }
-      }
-      this.setState({
-        value: value,
-        input: new_input
-      })
-    }
     // if (this.props.value !== prevProps.value) {
     //   let value = this.props.value
     //   let new_input = []

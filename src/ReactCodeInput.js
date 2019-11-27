@@ -78,8 +78,12 @@ class ReactCodeInput extends Component {
       })
     }
     if (this.props.value !== prevProps.value) {
+      let value = this.props.value
+      if(this.props.forceUppercase){
+        value = value.toUpperCase()
+      }
       this.setState({
-        value: this.props.value
+        value: value
       })
     }
     if (this.props.disabled !== prevProps.disabled) {
@@ -89,10 +93,14 @@ class ReactCodeInput extends Component {
     }
     if (this.props.fields !== prevProps.fields) {
       let new_input = []
+      let value = this.props.value
+      if(this.props.forceUppercase){
+        value = value.toUpperCase()
+      }
       for (let i = 0; i < Number(this.props.fields); i += 1) {
         if (i < 32) {
-          const value = this.props.value[i] || '';
-          new_input.push(value);
+          const val = value[i] || '';
+          new_input.push(val);
         }
       }
       this.setState({

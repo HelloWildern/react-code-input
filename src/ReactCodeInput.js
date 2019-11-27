@@ -77,8 +77,8 @@ class ReactCodeInput extends Component {
         isValid: this.props.isValid
       })
     }
-    if (this.props.value !== prevProps.value) {
-      let value = this.props.value
+    if (this.props.initialValue !== prevProps.initialValue) {
+      let value = this.props.initialValue
       let new_input = []
       if(this.props.forceUppercase){
         value = value.toUpperCase()
@@ -94,6 +94,23 @@ class ReactCodeInput extends Component {
         input: new_input
       })
     }
+    // if (this.props.value !== prevProps.value) {
+    //   let value = this.props.value
+    //   let new_input = []
+    //   if(this.props.forceUppercase){
+    //     value = value.toUpperCase()
+    //   }
+    //   for (let i = 0; i < Number(this.props.fields); i += 1) {
+    //     if (i < 32) {
+    //       const val = value[i] || '';
+    //       new_input.push(val);
+    //     }
+    //   }
+    //   this.setState({
+    //     value: value,
+    //     input: new_input
+    //   })
+    // }
     if (this.props.disabled !== prevProps.disabled) {
       this.setState({
         disabled: this.props.disabled
@@ -101,7 +118,7 @@ class ReactCodeInput extends Component {
     }
     if (this.props.fields !== prevProps.fields) {
       let new_input = []
-      let value = this.props.value
+      let value = this.state.value
       if(this.props.forceUppercase){
         value = value.toUpperCase()
       }
@@ -369,6 +386,7 @@ ReactCodeInput.defaultProps = {
   filterKeyCodes: [189, 190],
   filterChars: ['-', '.'],
   highlightCharIndex: false,
+  initialValue: '',
   respectWhitespace: false,
 };
 
@@ -401,6 +419,7 @@ ReactCodeInput.propTypes = {
   onKeyUp: PropTypes.func,
   placeholder: PropTypes.string,
   highlightCharIndex: PropTypes.number,
+  initialValue: PropTypes.string,
   respectWhitespace: PropTypes.bool,
 };
 

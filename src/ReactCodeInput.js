@@ -72,19 +72,6 @@ class ReactCodeInput extends Component {
   // }
 
   componentDidUpdate(prevProps){
-    if (this.props.fields !== prevProps.fields) {
-      let new_input = []
-      for (let i = 0; i < Number(this.props.fields); i += 1) {
-        if (i < 32) {
-          const value = this.state.value[i] || '';
-          new_input.push(value);
-        }
-      }
-      this.setState({
-        fields: this.props.fields,
-        input: new_input,
-      })
-    }
     if (this.props.isValid !== prevProps.isValid) {
       this.setState({
         isValid: this.props.isValid
@@ -98,6 +85,19 @@ class ReactCodeInput extends Component {
     if (this.props.disabled !== prevProps.disabled) {
       this.setState({
         disabled: this.props.disabled
+      })
+    }
+    if (this.props.fields !== prevProps.fields) {
+      let new_input = []
+      for (let i = 0; i < Number(this.props.fields); i += 1) {
+        if (i < 32) {
+          const value = this.props.value[i] || '';
+          new_input.push(value);
+        }
+      }
+      this.setState({
+        fields: this.props.fields,
+        input: new_input,
       })
     }
   }

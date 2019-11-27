@@ -187,16 +187,18 @@ class ReactCodeInput extends Component {
         newTarget.select();
       }
 
-      //fullValue = input.join('');
-      fullValue = input.map((s, i) => {
-        if (s) {
-          return s
-        } else {
-          return " "
-        }
-      }).join('')
+      fullValue = input.join('');
+      if (this.props.respectWhitespace) {
+        fullValue = input.map((s, i) => {
+          if (s) {
+            return s
+          } else {
+            return " "
+          }
+        }).join('')
+      }
 
-      this.setState({ value: fullValue, input });
+      this.setState({ value: input.join(''), input });
     }
 
     if (this.props.onChange && fullValue) {
@@ -367,6 +369,7 @@ ReactCodeInput.defaultProps = {
   filterKeyCodes: [189, 190],
   filterChars: ['-', '.'],
   highlightCharIndex: false,
+  respectWhitespace: false,
 };
 
 ReactCodeInput.propTypes = {
@@ -398,6 +401,7 @@ ReactCodeInput.propTypes = {
   onKeyUp: PropTypes.func,
   placeholder: PropTypes.string,
   highlightCharIndex: PropTypes.number,
+  respectWhitespace: PropTypes.bool,
 };
 
 export default ReactCodeInput;

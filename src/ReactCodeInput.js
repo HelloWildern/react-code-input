@@ -353,7 +353,7 @@ class ReactCodeInput extends Component {
               value={value}
               key={`input_${i}`}
               type={type}
-              className={(i === highlightCharIndex) ? 'highlight' : ''}
+              className={(i === highlightCharIndex || (Array.isArray(highlightCharIndex) && highlightCharIndex.includes(i))) ? 'highlight' : ''}
               min={0}
               max={9}
               maxLength={input.length === i + 1 ? 1 : input.length}
@@ -386,7 +386,7 @@ ReactCodeInput.defaultProps = {
   type: 'text',
   filterKeyCodes: [189, 190],
   filterChars: ['-', '.'],
-  highlightCharIndex: false,
+  highlightCharIndex: [],
   initialValue: '',
   respectWhitespace: false,
 };
@@ -419,7 +419,7 @@ ReactCodeInput.propTypes = {
   onKeyPress: PropTypes.func,
   onKeyUp: PropTypes.func,
   placeholder: PropTypes.string,
-  highlightCharIndex: PropTypes.number,
+  highlightCharIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
   initialValue: PropTypes.string,
   respectWhitespace: PropTypes.bool,
 };

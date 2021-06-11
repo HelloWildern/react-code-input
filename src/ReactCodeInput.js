@@ -340,14 +340,17 @@ class ReactCodeInput extends Component {
     }
 
     return (
-      <div className={classNames(className, 'react-code-input')} style={styles.container} onKeyDown={this.props.onKeyDown} onKeyPress={this.props.onKeyPress} onKeyUp={this.props.onKeyUp} >
+      <fieldset className={classNames(className, 'react-code-input')} style={styles.container} onKeyDown={this.props.onKeyDown} onKeyPress={this.props.onKeyPress} onKeyUp={this.props.onKeyUp} >
+        {this.props.label && <legend>{this.props.label}</legend>}
         {input.map((value, i) => {
+          const num = i + 1
           return (
             <input
               ref={(ref) => {
                 this.textInput[i] = ref;
               }}
               id={`${this.uuid}-${i}`}
+              label={`letter-${num}`}
               data-id={i}
               autoFocus={autoFocus && (i === 0) ? 'autoFocus' : ''}
               value={value}
@@ -371,7 +374,7 @@ class ReactCodeInput extends Component {
             />
           );
         })}
-      </div>
+      </fieldset>
     );
   }
 }
@@ -389,6 +392,7 @@ ReactCodeInput.defaultProps = {
   highlightCharIndex: [],
   initialValue: '',
   respectWhitespace: false,
+  label: '',
 };
 
 ReactCodeInput.propTypes = {
@@ -422,6 +426,7 @@ ReactCodeInput.propTypes = {
   highlightCharIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
   initialValue: PropTypes.string,
   respectWhitespace: PropTypes.bool,
+  label: PropTypes.string,
 };
 
 export default ReactCodeInput;

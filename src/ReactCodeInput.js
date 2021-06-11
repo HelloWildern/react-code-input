@@ -344,8 +344,8 @@ class ReactCodeInput extends Component {
         {this.props.label && <legend className="sr-only">{this.props.label}</legend>}
         {input.map((value, i) => { 
           return (
-            <div key={`input_${i}`}>
-              <label htmlFor={`${this.uuid}-${i}`} >Letter {i}</label>
+            <span key={`input_${i}`}>
+              <label htmlFor={`${this.uuid}-${i}`} className="sr-only">Letter {i}</label>
               <input
                 ref={(ref) => {
                   this.textInput[i] = ref;
@@ -371,7 +371,7 @@ class ReactCodeInput extends Component {
                 inputMode={inputMode}
                 placeholder={this.props.placeholder}
               />
-            </div>
+            </span>
           )
         })}
       </fieldset>

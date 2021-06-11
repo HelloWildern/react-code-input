@@ -341,38 +341,38 @@ class ReactCodeInput extends Component {
 
     return (
       <fieldset className={classNames(className, 'react-code-input')} style={styles.container} onKeyDown={this.props.onKeyDown} onKeyPress={this.props.onKeyPress} onKeyUp={this.props.onKeyUp} >
-        {this.props.label && <legend>{this.props.label}</legend>}
-        {input.map((value, i) => {
-          const num = i + 1
+        {this.props.label && <legend className="sr-only">{this.props.label}</legend>}
+        {input.map((value, i) => { 
           return (
-            <input
-              ref={(ref) => {
-                this.textInput[i] = ref;
-              }}
-              id={`${this.uuid}-${i}`}
-              label={`letter-${num}`}
-              data-id={i}
-              autoFocus={autoFocus && (i === 0) ? 'autoFocus' : ''}
-              value={value}
-              key={`input_${i}`}
-              type={type}
-              className={(i === highlightCharIndex || (Array.isArray(highlightCharIndex) && highlightCharIndex.includes(i))) ? 'highlight' : ''}
-              min={0}
-              max={9}
-              maxLength={input.length === i + 1 ? 1 : input.length}
-              style={styles.input}
-              autoComplete="off"
-              onFocus={(e) => e.target.select(e)}
-              onBlur={(e) => this.handleBlur(e)}
-              onChange={(e) => this.handleChange(e)}
-              onKeyDown={(e) => this.handleKeyDown(e)}
-              disabled={disabled}
-              data-valid={isValid}
-              pattern={pattern}
-              inputMode={inputMode}
-              placeholder={this.props.placeholder}
-            />
-          );
+            <div key={`input_${i}`}>
+              <label htmlFor={`${this.uuid}-${i}`} >Letter {i}</label>
+              <input
+                ref={(ref) => {
+                  this.textInput[i] = ref;
+                }}
+                id={`${this.uuid}-${i}`}
+                data-id={i}
+                autoFocus={autoFocus && (i === 0) ? 'autoFocus' : ''}
+                value={value}
+                type={type}
+                className={(i === highlightCharIndex || (Array.isArray(highlightCharIndex) && highlightCharIndex.includes(i))) ? 'highlight' : ''}
+                min={0}
+                max={9}
+                maxLength={input.length === i + 1 ? 1 : input.length}
+                style={styles.input}
+                autoComplete="off"
+                onFocus={(e) => e.target.select(e)}
+                onBlur={(e) => this.handleBlur(e)}
+                onChange={(e) => this.handleChange(e)}
+                onKeyDown={(e) => this.handleKeyDown(e)}
+                disabled={disabled}
+                data-valid={isValid}
+                pattern={pattern}
+                inputMode={inputMode}
+                placeholder={this.props.placeholder}
+              />
+            </div>
+          )
         })}
       </fieldset>
     );
